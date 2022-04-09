@@ -1,0 +1,85 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.calculator {
+  background-color: black;
+  display: flex;
+  flex-direction: column;  
+  padding: 30px 10px 10px;
+  gap: 5px;
+}
+
+.display {
+  background-color: gray;
+  height: 96px;  
+  display: flex;
+  flex-direction: column;  
+}
+
+.keys {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;  
+  width: 415px;
+  height: 500px;
+  gap: 5px;
+}
+
+.removal-keys {
+  display: flex;
+  gap: 5px;
+}
+
+.operator-keys{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.number-keys {
+  display: flex;
+  flex-wrap: wrap;
+  width: 310px;
+  gap: 5px;
+}
+
+.key {
+  width: 100px;
+  height: 96px;  
+  background-color: hsl(210, 80%, 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.big {
+  width: 205px;
+}
+
+.red {
+  background-color: hsl(0, 70%, 50%);
+}
+
+.orange {
+  background-color: hsl(40, 95%, 45%);
+}
+
+.green {
+  background-color: hsl(130, 80%, 35%);
+}

@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -14,27 +15,30 @@ body {
   justify-content: center;
   align-items: center;
   padding: 24px 0;
+  background-color: hsl(0, 1%, 48%);
 }
 
 .calculator {
-  background-color: black;
+  background-color: hsl(0, 15%, 13%);
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   padding: 30px 10px 10px;
   gap: 5px;
+  border-radius: 8px;
 }
 
 .display {
-  background-color: gray;
-  height: 96px;  
+  background-color: hsl(0, 0%, 58%);
+  height: 96px;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
+  border-radius: 8px;
 }
 
 .keys {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;  
+  flex-wrap: wrap;
   width: 415px;
   height: 500px;
   gap: 5px;
@@ -45,7 +49,7 @@ body {
   gap: 5px;
 }
 
-.operator-keys{
+.operator-keys {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -60,12 +64,15 @@ body {
 
 .key {
   width: 100px;
-  height: 96px;  
+  height: 96px;
   background-color: hsl(210, 80%, 50%);
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+  border-radius: 8px;
+  font-size: x-large;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .big {

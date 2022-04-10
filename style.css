@@ -35,6 +35,23 @@ body {
   border-radius: 8px;
 }
 
+.display-top {
+  height: 26px;
+  display: flex;
+  justify-content: end;
+  padding: 15px 10px 0 0;
+  font-size: large;
+}
+
+.display-bottom {
+  height: 70px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-right: 10px;
+  font-size: 40px;
+}
+
 .keys {
   display: flex;
   flex-direction: column;

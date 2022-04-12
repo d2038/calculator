@@ -48,8 +48,11 @@ function setDisplay() {
     case '/':
       if (state.lastOperator || state.firstNumber === '') {
         state.firstNumber = display.bottom;
-      } else {
-        calculate();
+      } else{
+        if (!calculate()) {
+          clear();
+          break;
+        }
       }
       display.top = `${state.firstNumber} ${input}`;
       state.lastOperator = true;
@@ -62,10 +65,23 @@ function setDisplay() {
         display.top = `${state.firstNumber} ${input}`;
       } else {
         display.top = `${display.top} ${display.bottom} ${input}`;
-        calculate();
+        if (!calculate()) {
+          clear();
+          break;
+        }
       }
       state.lastOperator = true;
       state.previousOperator = input;
+      break;
+    
+    case '.':
+      if (state.previousOperator === '=') clear();
+      if (display.bottom === '0' || state.lastOperator) {
+        display.bottom = `0${input}`;
+      } else if (!(display.bottom).includes('.')) {
+        display.bottom += input;
+      }
+      state.lastOperator = false;
       break;
   }
 
@@ -114,20 +130,25 @@ function calculate() {
   const num1 = +state.firstNumber;
   const num2 = +display.bottom;
   const operator = state.previousOperator;
+  if (num2 === 0 && operator === '/'){
+    alert("You can't divide by 0!");
+    return false;
+  }
   let result = operate(operator, num1, num2);
   result = roundNumber(result, 3);
 
   display.bottom = result.toString();
   state.firstNumber = result.toString();
+  return true;  
 }
 
 function roundNumber(num, scale) {
-  if(!("" + num).includes("e")) {
-    return +(Math.round(num + "e+" + scale)  + "e-" + scale);
+  if (!("" + num).includes("e")) {
+    return +(Math.round(num + "e+" + scale) + "e-" + scale);
   } else {
     var arr = ("" + num).split("e");
     var sig = ""
-    if(+arr[1] + scale > 0) {
+    if (+arr[1] + scale > 0) {
       sig = "+";
     }
     return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);

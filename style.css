@@ -107,3 +107,8 @@ body {
 .green {
   background-color: hsl(130, 80%, 35%);
 }
+
+.key:hover {
+  cursor: pointer;
+  filter: brightness(1.2);
+}

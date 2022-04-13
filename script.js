@@ -48,7 +48,7 @@ function setDisplay() {
     case '/':
       if (state.lastOperator || state.firstNumber === '') {
         state.firstNumber = display.bottom;
-      } else{
+      } else {
         if (!calculate()) {
           clear();
           break;
@@ -73,15 +73,20 @@ function setDisplay() {
       state.lastOperator = true;
       state.previousOperator = input;
       break;
-    
+
     case '.':
       if (state.previousOperator === '=') clear();
-      if (display.bottom === '0' || state.lastOperator) {
+      if (display.bottom === '' || state.lastOperator) {
         display.bottom = `0${input}`;
       } else if (!(display.bottom).includes('.')) {
         display.bottom += input;
       }
       state.lastOperator = false;
+      break;
+    case 'Del':
+      if (!state.lastOperator) {
+        display.bottom = (display.bottom).slice(0, -1);
+      }
       break;
   }
 
@@ -130,7 +135,7 @@ function calculate() {
   const num1 = +state.firstNumber;
   const num2 = +display.bottom;
   const operator = state.previousOperator;
-  if (num2 === 0 && operator === '/'){
+  if (num2 === 0 && operator === '/') {
     alert("You can't divide by 0!");
     return false;
   }
@@ -139,7 +144,7 @@ function calculate() {
 
   display.bottom = result.toString();
   state.firstNumber = result.toString();
-  return true;  
+  return true;
 }
 
 function roundNumber(num, scale) {

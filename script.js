@@ -15,6 +15,8 @@ const displayBottom = document.querySelector('.display-bottom');
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => key.addEventListener('click', setDisplay));
 
+window.addEventListener('keydown', clickKey);
+
 function setDisplay() {
   const input = this.textContent;
 
@@ -33,6 +35,7 @@ function setDisplay() {
     case '7':
     case '8':
     case '9':
+      if (display.bottom.length === 15 && !state.lastOperator) break;
       if (state.previousOperator === '=') clear();
       if (display.bottom === '0' || state.lastOperator) {
         display.bottom = input;
@@ -75,6 +78,7 @@ function setDisplay() {
       break;
 
     case '.':
+      if (display.bottom.length === 15 && !state.lastOperator) break;
       if (state.previousOperator === '=') clear();
       if (display.bottom === '' || state.lastOperator) {
         display.bottom = `0${input}`;
@@ -140,22 +144,30 @@ function calculate() {
     return false;
   }
   let result = operate(operator, num1, num2);
-  result = roundNumber(result, 3);
+  result = roundNumber('round', result, -3);
 
   display.bottom = result.toString();
   state.firstNumber = result.toString();
   return true;
 }
 
-function roundNumber(num, scale) {
-  if (!("" + num).includes("e")) {
-    return +(Math.round(num + "e+" + scale) + "e-" + scale);
-  } else {
-    var arr = ("" + num).split("e");
-    var sig = ""
-    if (+arr[1] + scale > 0) {
-      sig = "+";
-    }
-    return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+function roundNumber(type, value, exp) {
+  if (typeof exp === 'undefined' || +exp === 0) {
+    return Math[type](value);
   }
+  value = +value;
+  exp = +exp;
+  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+    return NaN;
+  }
+  value = value.toString().split('e');
+  value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+  value = value.toString().split('e');
+  return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+}
+
+function clickKey(e) {
+  const key = document.querySelector(`[data-key='${e.keyCode}']`);
+  if (!key) return;
+  key.click();
 }

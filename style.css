@@ -8,6 +8,7 @@ html {
 
 body {
   margin: 0;
+  background-color: hsl(0, 1%, 48%);
 }
 
 .main {
@@ -15,7 +16,6 @@ body {
   justify-content: center;
   align-items: center;
   padding: 24px 0;
-  background-color: hsl(0, 1%, 48%);
 }
 
 .calculator {
@@ -25,6 +25,8 @@ body {
   padding: 30px 10px 10px;
   gap: 5px;
   border-radius: 8px;
+  height: 641px;
+  width: 435px;
 }
 
 .display {
@@ -39,7 +41,7 @@ body {
   height: 26px;
   display: flex;
   justify-content: end;
-  padding: 15px 10px 0 0;
+  padding: 15px 10px 0;
   font-size: large;
 }
 
@@ -48,8 +50,8 @@ body {
   display: flex;
   justify-content: end;
   align-items: center;
-  padding-right: 10px;
-  font-size: 40px;
+  padding: 0 10px 0;
+  font-size: 35px;
 }
 
 .keys {
@@ -96,15 +98,15 @@ body {
   width: 205px;
 }
 
-.red {
+.clear {
   background-color: hsl(0, 70%, 50%);
 }
 
-.orange {
+.del {
   background-color: hsl(40, 95%, 45%);
 }
 
-.green {
+.operator-keys .key {
   background-color: hsl(130, 80%, 35%);
 }
 
